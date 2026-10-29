@@ -11,6 +11,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_library(taskflow_core
     src/models/Task.cpp
+    src/services/TaskManager.cpp
 )
 
 target_include_directories(taskflow_core
