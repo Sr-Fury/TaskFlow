@@ -27,3 +27,35 @@ target_link_libraries(taskflow
     PRIVATE
         taskflow_core
 )
+
+include(CTest)
+
+if(BUILD_TESTING)
+
+    include(FetchContent)
+
+    FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/refs/tags/v1.18.0.tar.gz
+    )
+
+    set(INSTALL_GTEST OFF CACHE BOOL "" FORCE)
+    set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
+
+    FetchContent_MakeAvailable(googletest)
+
+    add_executable(taskflow_tests
+        tests/TaskTests.cpp
+        tests/TaskManagerTests.cpp
+    )
+
+    target_link_libraries(taskflow_tests
+        PRIVATE
+            taskflow_core
+            GTest::gtest_main
+    )
+
+    include(GoogleTest)
+    gtest_discover_tests(taskflow_tests)
+
+endif()
