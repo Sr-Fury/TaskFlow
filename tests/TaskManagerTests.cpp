@@ -125,4 +125,21 @@ TEST(TaskManagerTests, ReturnsAllTasks)
     EXPECT_EQ(tasks[1].getTitle(), "Second task");
 }
 
+TEST(TaskManagerTests, NewTaskStartsWithTodoStatus)
+{
+    TaskManager manager;
+
+    int id = manager.createTask(
+        "Learn GitHub Actions",
+        "Understand CI failures",
+        TaskPriority::High
+    );
+
+    const Task* task = manager.getTaskById(id);
+
+    ASSERT_NE(task, nullptr);
+
+    EXPECT_EQ(task->getStatus(), TaskStatus::Todo);
+}
+
 } // namespace taskflow
