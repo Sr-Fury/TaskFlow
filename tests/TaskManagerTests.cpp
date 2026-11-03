@@ -139,7 +139,7 @@ TEST(TaskManagerTests, NewTaskStartsWithTodoStatus)
 
     ASSERT_NE(task, nullptr);
 
-    EXPECT_EQ(task->getStatus(), TaskStatus::Completed);
+    EXPECT_EQ(task->getStatus(), TaskStatus::Todo);
 }
 
 } // namespace taskflow
